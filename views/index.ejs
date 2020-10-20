@@ -7,5 +7,13 @@
 </head>
 <body>
   <h2>Hello World</h2>
+  <% tweets.forEach(tweet => { %>
+    <h4><%=tweet.text%></h4>
+    <% if(tweet.imgs.length > 0) {%>
+      <% tweet.imgs.forEach(img => { %> 
+        <iframe src=<%=tweet.img%> title="W3Schools Free Online Web Tutorials"></iframe>
+      <% }) %>
+    <% } %>
+  <%}); %>
 </body>
 </html>
