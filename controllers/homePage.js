@@ -12,7 +12,7 @@ module.exports = (req, res) => {
         var id = tweet.id
         tweetIds.push(id)
       })
-      res();
+      res()
     })
   })
   prom.then((result) => {
@@ -26,7 +26,7 @@ module.exports = (req, res) => {
           } else if (newUrl.includes('video')) {
             newUrl = newUrl.substr(0, newUrl.indexOf('video') -1)
           }
-          if(newUrl != '' ) {
+          if(newUrl != '') {
             const prom2 = new Promise((res, rej) => {
               const html = htmlGrabber.getTweetHTML(newUrl).then((html) => {
                 if(html != undefined) {
@@ -35,7 +35,7 @@ module.exports = (req, res) => {
                 res()
               })
             }).then((result) => {
-              res();
+              res()
             })
           } else {
             res()
