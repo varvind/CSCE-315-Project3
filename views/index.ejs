@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <title>Election Tracker</title>
+</head>
+<body>
+  <div id="div1">
+  </div>
+  <% tweetHTML.forEach((html) => { %>
+    <script src = "../controllers/renderTweetHTML.js" test = '<%=html%>'> </script>
+  <% }) %> 
+
+</body>
+</html>
