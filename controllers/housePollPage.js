@@ -6,7 +6,7 @@ module.exports = (req, res) => {
 const parseStream = papa.parse(papa.NODE_STREAM_INPUT, options);
 
 const dataStream = request
-    .get("https://projects.fivethirtyeight.com/2020-general-data/presidential_national_toplines_2020.csv")
+    .get("https://projects.fivethirtyeight.com/polls-page/house_polls.csv")
     .pipe(parseStream);
 
 let data = [];
@@ -18,13 +18,13 @@ dataStream.on("finish", () => {
    
 var jsonArr = [];
 for(x of data){
-	jsonArr.push({"Date": x[3], "Candidate_1": x[4], "Result_1": x[23], "Candidate_2": x[5], "Result_2": x[24]});
-	//output+='{"Date":"'+x[3]+'",'+'"Candidate_1":"'+x[4]+'",'+'"Result_1":"'+x[23]+'",'+'"Candidate_2":"'+x[5]+'",'+'"Result_2":"'+x[24]+'"},';
+	if(x[3]=="Texas" && x[2]=="2020"){
+		jsonArr.push({"District": x[18], "Date": x[19], "Candidate": x[35], "Party": x[36], "Result": x[37]});
+	}
+	
 	
 }
-//output+="]}'";
 
- // console.log(jsonArr);
   res.send(jsonArr);
 
 })
