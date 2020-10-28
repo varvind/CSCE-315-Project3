@@ -4,14 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GOOGLE_KEY%>&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+  </style>
+  <script>
+    // Initialize and add the map
+    function initMap() {
+      // The location of Uluru
+      locations = []
+      
+      <% var j = 0 %>
+      while(<%=j%> < <%= pollingLocations.length%>) {
+        console.log(j);
+        <% j++ %>
+      }
+      // The map, centered at Uluru
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: locations[0],
+      });
+      // The marker, positioned at Uluru
+      for(var i = 0; i < <%=pollingLocations.length%>; i++) {
+        const marker = new google.maps.Marker({
+          position: locations[i],
+          map: map,
+        });
+      }
+    }
+  </script>
   <title>Election Tracker</title>
 </head>
 <body>
-  <div id="div1">
+  <!-- <div id="div1">
   </div>
   <% tweetHTML.forEach((html) => { %>
     <script src = "../controllers/renderTweetHTML.js" test = '<%=html%>'> </script>
-  <% }) %> 
-
+  <% }) %>  -->
+  <h3>My Google Maps Demo</h3>
+  <!--The div element for the map -->
+  <div id="map"></div>
 </body>
 </html>
