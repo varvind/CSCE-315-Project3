@@ -54,7 +54,6 @@ module.exports = (req, res) => {
         promises.push(prom1)
       })
       Promise.all(promises).then((result) => {
-        console.log(pollingLocations)
         res.render('index', {
           layout: false,
           tweetHTML,

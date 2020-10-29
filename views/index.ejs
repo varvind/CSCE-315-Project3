@@ -22,12 +22,22 @@
     function initMap() {
       // The location of Uluru
       locations = []
-      
-      <% var j = 0 %>
-      while(<%=j%> < <%= pollingLocations.length%>) {
-        console.log(j);
-        <% j++ %>
-      }
+      descriptions = []
+      <%pollingLocations.forEach((item) => { %>
+        var lat = parseFloat(<%= item.latitude%>)
+        var long = parseFloat(<%= item.longitude%>)
+        var location = { lat: lat, lng: long }
+        locations.push(location)
+        var name = '<%=item.address.locationName%>'
+        var line1 = '<%=item.address.line1%>'
+        var city = '<%=item.address.city%>'
+        var state =' <%=item.address.state%>'
+        var zip = '<%=item.address.zip%>'
+
+        var info = { name: name, line1: line1, city: city, state: state, zip: zip}
+        descriptions.push(info)
+      <%})%>
+
       // The map, centered at Uluru
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
@@ -35,9 +45,18 @@
       });
       // The marker, positioned at Uluru
       for(var i = 0; i < <%=pollingLocations.length%>; i++) {
+        const contentString = `<h3>${descriptions[i].name}</h3>
+                              <h4>${descriptions[i].line1}, ${descriptions[i].city} ${descriptions[i].state}, ${descriptions[i].zip}</h4>`
+        const infowindow = new google.maps.InfoWindow({
+          content:contentString
+        })
         const marker = new google.maps.Marker({
           position: locations[i],
           map: map,
+          title: 'hello world'
+        });
+        marker.addListener("click", () => {
+          infowindow.open(map, marker);
         });
       }
     }
