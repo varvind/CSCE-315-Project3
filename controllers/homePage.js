@@ -14,6 +14,7 @@ module.exports = (req, res) => {
       })
       res()
     })
+
   })
   prom.then((result) => {
     promises = []
@@ -50,5 +51,6 @@ module.exports = (req, res) => {
         tweetHTML
       })
     })
+
   })
 }
