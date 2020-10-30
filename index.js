@@ -30,3 +30,15 @@ const homePageController = require('./controllers/homePage')
 
 
 app.get('/', homePageController)
+
+const pollsPageController = require('./controllers/PollsPage')
+app.get('/polls', pollsPageController)
+
+const texassenatecontroller = require('./controllers/texasPollPage')
+app.get('/senate/tx', texassenatecontroller)
+
+const njsenatecontroller = require('./controllers/njPollPage')
+app.get('/senate/nj', njsenatecontroller)
+
+const txhousecontroller = require('./controllers/housePollPage')
+app.get('/house/tx', txhousecontroller)
