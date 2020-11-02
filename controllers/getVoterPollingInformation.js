@@ -21,7 +21,6 @@ async function getRequest() {
         "authorization": ''
     }})
     if(res.body) {
-        console.log(res.body)
         return res.body;
     } else {
         throw new Error ('Unsuccessful request')
