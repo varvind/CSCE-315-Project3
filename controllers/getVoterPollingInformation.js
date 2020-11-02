@@ -21,6 +21,7 @@ async function getRequest() {
         "authorization": ''
     }})
     if(res.body) {
+        console.log(res.body)
         return res.body;
     } else {
         throw new Error ('Unsuccessful request')
@@ -32,9 +33,11 @@ async function getPollingLocation() {
     try {
         // Make request
         const response = await getRequest();
-        return response.earlyVoteSites
-        
-        
+        if(response.pollingLocations == undefined) {
+          return new Array()
+        } else {
+          return response.pollingLocations
+        }
     } catch(e) {
         console.log(e);
         return []
