@@ -15,7 +15,7 @@ async function getRequest() {
 
     // Edit query parameters below
     const params = {
-        'query': 'from:realdonaldtrump', 
+        'query': 'from:JoeBiden', 
         'tweet.fields': 'author_id',
         'user.fields': 'description',
         'max_results': `${maxTweets}`
