@@ -42,3 +42,7 @@ app.get('/senate/nj', njsenatecontroller)
 
 const txhousecontroller = require('./controllers/housePollPage')
 app.get('/house/tx', txhousecontroller)
+const trumpnytimes = require('./controllers/trumpnytimespage.js')
+app.get('/nyt/trump', trumpnytimes)
+const bidennytimes = require('./controllers/bidennytimespage.js')
+app.get('/nyt/biden', bidennytimes)
