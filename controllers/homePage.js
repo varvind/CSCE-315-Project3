@@ -5,9 +5,12 @@ const pollLocationGrabber = require('./getVoterPollingInformation')
 const e = require('express')
 
 module.exports = (req, res) => {
-  var tweetHTML = []
-  var tweetIds = []
+  var trumpHTML = []
+  var trumpIds = []
+  var bidenHTML = []
+  var bidenIds = []
   var pollingLocations = []
+  var tweetPromises = []
   var getPollingLocations = new Promise((res, rej) => {
     pollLocationGrabber.getPollingLocation().then((response)=> {
       pollingLocations = response
@@ -15,18 +18,28 @@ module.exports = (req, res) => {
     res()
   })
   getPollingLocations.then((result) => {
-    var prom = new Promise((res, rej) => {
-      const tweets = tweetGrabber.getTweets().then((response) => {
+    var prom0 = new Promise((res, rej) => {
+      const tweets = tweetGrabber.getTweets("realDonaldTrump").then((response) => {
         response.data.forEach(tweet => {
           var id = tweet.id
-          tweetIds.push(id)
+          trumpIds.push(id)
         })
         res()
       })
     })
-    prom.then((result) => {
+    var prom = new Promise((res, rej) => {
+      const tweets = tweetGrabber.getTweets("JoeBiden").then((response) => {
+        response.data.forEach(tweet => {
+          var id = tweet.id
+          bidenIds.push(id)
+        })
+        res()
+      })
+    })
+    tweetPromises.push(prom0, prom)
+    Promise.all(tweetPromises).then((result) => {
       promises = []
-      tweetIds.forEach((tweetid) => {
+      bidenIds.forEach((tweetid) => {
         var prom1 = new Promise((res, rej) => {
           const url = urlGrabber.getTweetUrl(tweetid).then((response) => {
             var newUrl = response
@@ -39,7 +52,7 @@ module.exports = (req, res) => {
               const prom2 = new Promise((res, rej) => {
                 const html = htmlGrabber.getTweetHTML(newUrl).then((html) => {
                   if(html != undefined) {
-                    tweetHTML.push(html)
+                    bidenHTML.push(html)
                   }
                   res()
                 })
@@ -53,10 +66,40 @@ module.exports = (req, res) => {
         })
         promises.push(prom1)
       })
+
+      trumpIds.forEach((tweetid) => {
+        var prom1 = new Promise((res, rej) => {
+          const url = urlGrabber.getTweetUrl(tweetid).then((response) => {
+            var newUrl = response
+            if(newUrl.includes('photo')) {
+              newUrl = newUrl.substr(0, newUrl.indexOf('photo') -1)
+            } else if (newUrl.includes('video')) {
+              newUrl = newUrl.substr(0, newUrl.indexOf('video') -1)
+            }
+            if(newUrl != '') {
+              const prom2 = new Promise((res, rej) => {
+                const html = htmlGrabber.getTweetHTML(newUrl).then((html) => {
+                  if(html != undefined) {
+                    trumpHTML.push(html)
+                  }
+                  res()
+                })
+              }).then((result) => {
+                res()
+              })
+            } else {
+              res()
+            }
+          })
+        })
+        promises.push(prom1)
+      })
+      
       Promise.all(promises).then((result) => {
         res.render('index', {
-          layout: false,
-          tweetHTML,
+          layout: 'layouts/navbar',
+          bidenHTML: bidenHTML,
+          trumpHTML: trumpHTML,
           pollingLocations
         })
       })
