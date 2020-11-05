@@ -8,10 +8,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <script
-      src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GOOGLE_KEY%>&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
@@ -38,15 +34,32 @@
           <div style = "margin-left:-50%">
             <img src = "../img/trump.jpg" style = "border-radius: 50%;width:17%;">
           </div>
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style = "margin-top:2%; margin-left:-45%; width:80%">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style = "margin-top:2%; margin-left:-50%; width:80%">
             <div class="carousel-inner">
               <% var j = 0 %>
-              <% trumpHTML.forEach((html) => { %>
+              <% while (j < trumpTweets.length) {%>
+                <%if (j==0) {%>
+                  <div class="carousel-item active " id = "trump<%=j%> ">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">Donald Trump</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-text"><%=trumpTweets[j].text%> </p>
+                      </div>
+                    </div>
+                <% }  else {%>  
                 <div class="carousel-item" id = "trump<%=j%> ">
-                <script src = "../controllers/renderTweetHTML.js" test = '<%=html%>' index = '<%=j%>'  candidate='trump'> </script>
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Donald Trump</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-text"><%=trumpTweets[j].text%> </p>
+                    </div>
+                  </div>
+                <% } %> 
                 <% j++ %>
                 </div>
-              <% }) %>
+              <% } %>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -70,13 +83,30 @@
           </div>
           <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel" style = "margin-top:2%; margin-left:30%; width: 80%">
             <div class="carousel-inner">
-              <% var i = 0 %>
-              <% bidenHTML.forEach((html) => { %>
-                <div class="carousel-item" id = "biden<%=i%> ">
-                <script src = "../controllers/renderTweetHTML.js" test = '<%=html%>' index = '<%=i%>'  candidate='biden'> </script>
-                <% i++ %>
+              <% var j = 0 %>
+              <% while (j < bidenTweets.length) {%>
+                <%if (j==0) {%>
+                  <div class="carousel-item active " id = "trump<%=j%> ">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">Donald Trump</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-text"><%=bidenTweets[j].text%> </p>
+                      </div>
+                    </div>
+                <% }  else {%>  
+                <div class="carousel-item" id = "trump<%=j%> ">
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Joe Biden</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-text"><%=bidenTweets[j].text%> </p>
+                    </div>
+                  </div>
+                <% } %> 
+                <% j++ %>
                 </div>
-              <% }) %>
+              <% } %>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
