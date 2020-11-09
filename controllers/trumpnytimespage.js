@@ -21,7 +21,7 @@ var keys = {
 var nyt = new NYT(keys);
 var jsonArr = [];
 
-var x = nyt.article.search({'query':'Trump'}, function(response){
+var x = nyt.article.search({'query':req.params.q}, function(response){
 const json = JSON.parse(response);
 var final = json["response"]["docs"]
 for (var key in final) {
