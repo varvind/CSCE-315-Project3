@@ -3,6 +3,9 @@
 
 module.exports = (req, res) => {
   res.render('searchPoliticians', {
-    layout: 'layouts/navbar'
+    layout: 'layouts/navbar',
+    tweets : [],
+    names : [],
+    fivethirtyeightpolls: []
   })
 }

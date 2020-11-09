@@ -11,7 +11,6 @@ const path = require('path')
 const methodOverride = require('method-override')
 const expressLayouts = require('express-ejs-layouts')
 
-
 app.use(bodyParser.json())
 app.use(expressLayouts)
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -48,3 +47,6 @@ app.get('/politician_search', searchPoliticianController)
 
 const pollingLocationController = require('./controllers/pollingLocationController')
 app.get('/find_polling_location', pollingLocationController)
+
+const searchController = require('./controllers/Search')
+app.get('/search', searchController)
