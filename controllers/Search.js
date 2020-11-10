@@ -2,7 +2,11 @@ const e = require('express')
 const needle = require('needle')
 const tweetGrabber = require('./getRecentTweets')
 const nameToUserNameMap = { 'Donald Trump': {twitterUName: 'realDonaldTrump', party: 'Republican', name : 'Donald Trump', imagePath: './img/trump.jpg'}, 
-                            'Joe Biden': {twitterUName: 'JoeBiden', party : 'Democrat', name : 'Joe Biden', imagePath: './img/Joe_Biden.jpg'}}
+                            'Joe Biden': {twitterUName: 'JoeBiden', party : 'Democrat', name : 'Joe Biden', imagePath: './img/Joe_Biden.jpg'},
+                            'Mike Pence': {twitterUName: 'Mike_Pence', party : 'Republican', name : 'Mike Pence', imagePath: './img/Mike_Pence.jpg'},
+                            'Kamala Harris' : {twitterUName: 'KamalaHarris', party : 'Democrat', name : 'Kamala Harris', imagePath: './img/Kamala_Harris.jpg'},
+                            'Mitch McConnell' : {twitterUName: 'senatemajldr', party : 'Republican', name : 'Mitch McConnell', imagePath: './img/mitch_mcconnell.jpg'},
+                            'Nancy Pelosi' : {twitterUName: 'SpeakerPelosi', party : 'Democrat', name : 'Nancy Pelosi', imagePath: './img/nancy_pelosi.jpg'}}
 module.exports = (req, res) => {
   const query = req.query.search
   const party = req.query.party
