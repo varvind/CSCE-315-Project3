@@ -3,15 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+      .vl {
+        border-left: 1px solid grey;
+        height: 600px;
+      }
+
+    </style>
   <title>Election Tracker</title>
 </head>
 <body>
-  <div id="div1">
-  </div>
-  <% tweetHTML.forEach((html) => { %>
-    <script src = "../controllers/renderTweetHTML.js" test = '<%=html%>'> </script>
-  <% }) %> 
+  <h3 style = "text-align: center; margin-top:3%">Presidential Election 2020</h3>
+  <h5 style = "text-align: center; margin-top:3%">Donald Trump vs. Joe Biden</h5>
+  <div class="container">
+    <div class="row" style = "margin-top: 2%">
+      <div class="col">
+        <center>
+          <div style = "margin-left:-50%">
+            <img src = "../img/trump.jpg" style = "border-radius: 50%;width:17%;">
+          </div>
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style = "margin-top:2%; margin-left:-50%; width:80%">
+            <div class="carousel-inner">
+              <% var j = 0 %>
+              <% while (j < trumpTweets.length) {%>
+                <%if (j==0) {%>
+                  <div class="carousel-item active " id = "trump<%=j%> ">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">Donald Trump</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-text"><%=trumpTweets[j].text%> </p>
+                      </div>
+                    </div>
+                <% }  else {%>  
+                <div class="carousel-item" id = "trump<%=j%> ">
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Donald Trump</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-text"><%=trumpTweets[j].text%> </p>
+                    </div>
+                  </div>
+                <% } %> 
+                <% j++ %>
+                </div>
+              <% } %>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          
+        </center>
+      </div>
+      <div class="vl">
 
+      </div>
+      <div class="col">
+        <center>
+          <div style = "margin-left:40%">
+            <img src = "../img/Joe_Biden.jpg" style = "border-radius: 50%;width:43%;">
+          </div>
+          <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel" style = "margin-top:2%; margin-left:30%; width: 80%">
+            <div class="carousel-inner">
+              <% var j = 0 %>
+              <% while (j < bidenTweets.length) {%>
+                <%if (j==0) {%>
+                  <div class="carousel-item active " id = "trump<%=j%> ">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">Donald Trump</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-text"><%=bidenTweets[j].text%> </p>
+                      </div>
+                    </div>
+                <% }  else {%>  
+                <div class="carousel-item" id = "trump<%=j%> ">
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Joe Biden</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-text"><%=bidenTweets[j].text%> </p>
+                    </div>
+                  </div>
+                <% } %> 
+                <% j++ %>
+                </div>
+              <% } %>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </center>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <!--The div element for the map -->
 </body>
 </html>

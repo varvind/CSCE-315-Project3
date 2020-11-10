@@ -1,56 +1,49 @@
 const tweetGrabber = require('./getRecentTweets')
-const urlGrabber = require('./getTweetUrl')
-const htmlGrabber = require('./getTweetHTML')
+const needle = require('needle')
 const e = require('express')
 
 module.exports = (req, res) => {
-  var tweetHTML = []
-  var tweetIds = []
-  var prom = new Promise((res, rej) => {
-    const tweets = tweetGrabber.getTweets().then((response) => {
+  var trumpTweets = []
+  var bidenTweets = []
+  var tweetPromises = []
+  var pollData = []
+  var prom0 = new Promise((res, rej) => {
+    const tweets = tweetGrabber.getTweets("realDonaldTrump").then((response) => {
       response.data.forEach(tweet => {
-        var id = tweet.id
-        tweetIds.push(id)
+        trumpTweets.push(tweet)
       })
       res()
     })
-
   })
-  prom.then((result) => {
-    promises = []
-    tweetIds.forEach((tweetid) => {
-      var prom1 = new Promise((res, rej) => {
-        const url = urlGrabber.getTweetUrl(tweetid).then((response) => {
-          var newUrl = response
-          if(newUrl.includes('photo')) {
-            newUrl = newUrl.substr(0, newUrl.indexOf('photo') -1)
-          } else if (newUrl.includes('video')) {
-            newUrl = newUrl.substr(0, newUrl.indexOf('video') -1)
+  var prom = new Promise((res, rej) => {
+    const tweets = tweetGrabber.getTweets("JoeBiden").then((response) => {
+      response.data.forEach(tweet => {
+        bidenTweets.push(tweet)
+      })
+      res()
+    })
+  })
+  tweetPromises.push(prom0, prom)
+  
+  Promise.all(tweetPromises).then(async (result) => {
+      const prom1 = new Promise(async (res, rej) => {
+        needle('get', 'http://localhost:3000/polls').then((response) => {
+          const data = response.body
+          for(var i = 1; i < 6 ; i++) {
+            pollData.push(data[i])
           }
-          if(newUrl != '') {
-            const prom2 = new Promise((res, rej) => {
-              const html = htmlGrabber.getTweetHTML(newUrl).then((html) => {
-                if(html != undefined) {
-                  tweetHTML.push(html)
-                }
-                res()
-              })
-            }).then((result) => {
-              res()
-            })
-          } else {
-            res()
-          }
+          
         })
+        res()        
       })
-      promises.push(prom1)
-    })
-    Promise.all(promises).then((result) => {
-      res.render('index', {
-        layout: false,
-        tweetHTML
-      })
-    })
-
+      prom1.then((result)=> {
+        res.render('index', {
+          layout: 'layouts/navbar',
+          bidenTweets: bidenTweets,
+          trumpTweets: trumpTweets,
+          pollData: pollData
+        })
+      })  
+      
   })
 }

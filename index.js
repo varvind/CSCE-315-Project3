@@ -42,5 +42,13 @@ app.get('/senate/nj', njsenatecontroller)
 
 const txhousecontroller = require('./controllers/housePollPage')
 app.get('/house/tx', txhousecontroller)
+
 const trumpnytimes = require('./controllers/trumpnytimespage.js')
 app.get('/nyt/:q', trumpnytimes)
+
+const searchPoliticianController = require('./controllers/searchPoliticianController')
+app.get('/politician_search', searchPoliticianController)
+
+const pollingLocationController = require('./controllers/pollingLocationController')
+app.get('/find_polling_location', pollingLocationController)
+

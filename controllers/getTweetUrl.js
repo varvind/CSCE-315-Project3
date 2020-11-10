@@ -31,7 +31,7 @@ async function getTweetUrl(tweetId) {
     try {
         // Make request
         const response = await getRequest(tweetId);
-        if(response.data.entities.urls == undefined) {
+        if(response.data == undefined || response.data.entities == undefined || response.data.entities.urls == undefined) {
           return ''
         } else {
           return response.data.entities.urls[0].expanded_url  

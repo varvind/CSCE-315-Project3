@@ -11,11 +11,11 @@ const token = process.env.BEARER_TOKEN;
 const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
 
 
-async function getRequest() {
+async function getRequest(name) {
 
     // Edit query parameters below
     const params = {
-        'query': 'from:realdonaldtrump', 
+        'query': `from:${name}`, 
         'tweet.fields': 'author_id',
         'user.fields': 'description',
         'max_results': `${maxTweets}`
@@ -31,11 +31,11 @@ async function getRequest() {
     }
 }
 
-async function getTweets() {
+async function getTweets(name) {
 
     try {
         // Make request
-        const response = await getRequest();
+        const response = await getRequest(name);
         return response
     } catch(e) {
         console.log(e);
