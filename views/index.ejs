@@ -9,24 +9,23 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <style type="text/css">
-      /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;
-        /* The height is 400 pixels */
-        width: 100%;
-        /* The width is the width of the web page */
-      }
       .vl {
         border-left: 1px solid grey;
         height: 600px;
       }
-
+      body {
+        font-size: 100%;
+      }
+      .card {
+        height: 400px;
+        width:100%
+      }
     </style>
   <title>Election Tracker</title>
 </head>
 <body>
-  <h3 style = "text-align: center; margin-top:3%">Presidential Election 2020</h3>
-  <h5 style = "text-align: center; margin-top:3%">Donald Trump vs. Joe Biden</h5>
+  <p style = "text-align: center; margin-top:3%; font-size: 180%; text-emphasis: bold;">Presidential Election 2020</p>
+  <p style = "text-align: center; margin-top:2%; font-size: 140%; text-emphasis: bold;">Donald Trump vs. Joe Biden<p>
   <div class="container">
     <div class="row" style = "margin-top: 2%">
       <div class="col">
@@ -40,19 +39,19 @@
               <% while (j < trumpTweets.length) {%>
                 <%if (j==0) {%>
                   <div class="carousel-item active " id = "trump<%=j%> ">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;" id = "trump<%=j%>">
                       <div class="card-body">
-                        <h5 class="card-title">Donald Trump</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-title" style = "font-size:120%; font-weight: 500;">Donald Trump</p>
+                        <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></p>
                         <p class="card-text"><%=trumpTweets[j].text%> </p>
                       </div>
                     </div>
                 <% }  else {%>  
                 <div class="carousel-item" id = "trump<%=j%> ">
-                  <div class="card" style="width: 18rem;">
+                  <div class="card" style="width: 18rem;" id = "trump<%=j%>">
                     <div class="card-body">
-                      <h5 class="card-title">Donald Trump</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-title" style = "font-size:120%; font-weight: 500;">Donald Trump</p>
+                      <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></p>
                       <p class="card-text"><%=trumpTweets[j].text%> </p>
                     </div>
                   </div>
@@ -62,11 +61,11 @@
               <% } %>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="carousel-control-prev-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="carousel-control-next-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Next</span>
             </a>
           </div>
@@ -86,20 +85,20 @@
               <% var j = 0 %>
               <% while (j < bidenTweets.length) {%>
                 <%if (j==0) {%>
-                  <div class="carousel-item active " id = "trump<%=j%> ">
-                    <div class="card" style="width: 18rem;">
+                  <div class="carousel-item active " id = "trump<%=j%>">
+                    <div class="card" style="width: 18rem;" id = "biden<%=j%>">
                       <div class="card-body">
-                        <h5 class="card-title">Donald Trump</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-title" style = "font-size:120%; font-weight: 500;">Joe Biden</p>
+                        <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@Joe Biden  <img src = "../img/twitter.png" style = "width:20px"></p>
                         <p class="card-text"><%=bidenTweets[j].text%> </p>
                       </div>
                     </div>
                 <% }  else {%>  
                 <div class="carousel-item" id = "trump<%=j%> ">
-                  <div class="card" style="width: 18rem;">
+                  <div class="card" style="width: 18rem" id = "biden<%=j%>">
                     <div class="card-body">
-                      <h5 class="card-title">Joe Biden</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-title" style = "font-size:120%; font-weight: 500;">Joe Biden</p>
+                      <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@Joe Biden  <img src = "../img/twitter.png" style = "width:20px"></p>
                       <p class="card-text"><%=bidenTweets[j].text%> </p>
                     </div>
                   </div>
@@ -109,11 +108,11 @@
               <% } %>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="carousel-control-prev-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next" >
+              <span class="carousel-control-next-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Next</span>
             </a>
           </div>
@@ -125,9 +124,20 @@
   <br>
   <br>
   <br>
+  <input type = "range" min = "80" max = "120" value = "100" id = "myRange">
   <br>
   <br>
-  
+  <script>
+    document.getElementById("myRange").addEventListener("change", () => {
+      var val = document.getElementById("myRange").value
+      var height = 350 * (1 + (val - 100)/100) + 80
+      var sheet = document.styleSheets[6]
+      var rules = sheet.cssRules || sheet.rules
+      rules[1].style.fontSize = `${val}%`
+      rules[2].style.height = `${height}px`
+      rules[2].style.width = `${val}%`
+    })
+  </script>
   <!--The div element for the map -->
 </body>
 </html>

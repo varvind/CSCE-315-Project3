@@ -6,6 +6,7 @@ module.exports = (req, res) => {
     layout: 'layouts/navbar',
     tweets : [],
     names : [],
-    fivethirtyeightpolls: []
+    fivethirtyeightpolls: [],
+    nytimes : []
   })
 }
