@@ -119,7 +119,7 @@
           </div>
         </center>
       </div>
-    </div>
+    </div>1
   </div>
   <br>
   <br>
@@ -127,6 +127,34 @@
   <br>
   <br>
   <br>
+  
+  <script>
+  document.onkeydown = function(e) {
+    if (e.which == 49) {
+	  alert("Go to Home Page");
+	  
+	  var newUrl = "/";
+      window.location.replace(newUrl);
+	  document.location.href = newUrl;
+	  
+    } else if (e.which == 50){
+	  alert("Go to Search Page");
+	  
+	  var newUrl = "/politician_search";
+      window.location.replace(newUrl);
+	  document.location.href = newUrl;
+	  
+	} else if (e.which == 51){
+	  alert("Go to Map Page");
+	  
+	  var newUrl = "/find_polling_location";
+      window.location.replace(newUrl);
+	  document.location.href = newUrl;
+	  
+	}
+  };
+  </script>
+  
   
   <!--The div element for the map -->
 </body>
