@@ -128,6 +128,36 @@
   <br>
   <br>
   
+  <script>
+  if(localStorage.getItem("firstTime")==null){
+   setTimeout(() => { alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page"); }, 2000);
+   localStorage.setItem("firstTime","done");
+}
+  //setTimeout(() => { alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page"); }, 2000);
+  //alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page");
+  
+  document.onkeydown = function(e) {
+    if (e.which == 49) {
+	  //alert("Go to Home Page");
+	  var newUrl = "/";
+      window.location.replace(newUrl);
+	  document.location.href = newUrl;
+    } else if (e.which == 50){
+	  //alert("Go to Search Page");
+	  var newUrl = "/politician_search";
+      window.location.replace(newUrl);
+	  document.location.href = newUrl;
+	} else if (e.which == 51){
+	  //alert("Go to Map Page");
+	  var newUrl = "/find_polling_location";
+      window.location.replace(newUrl);
+	  document.location.href = newUrl;
+	  
+	}
+  };
+  </script>
+  
+  
   <!--The div element for the map -->
 </body>
 </html>
