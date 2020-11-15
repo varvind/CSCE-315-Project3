@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <link href="/css-circular-prog-bar.css" media="all" rel="stylesheet" />
+
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
@@ -70,9 +73,28 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-          
+
+         
         </center>
+<center>
+ <p>Polls</p>
+ <p>National</p>
+  <% if(fivethirtyeightpolls.length != 0) { %>
+          <% fivethirtyeightpolls.forEach(pollData => { %>
+             <div class="progress-circle over50 p46">
+ <span><%=pollData.poll.Result_1%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+</center>
       </div>
+
       <div class="vl">
 
       </div>
@@ -118,6 +140,25 @@
             </a>
           </div>
         </center>
+<center>
+<p>Polls</p>
+<p>National</p>
+  <% if(fivethirtyeightpolls.length != 0) { %>
+          <% fivethirtyeightpolls.forEach(pollData => { %>
+             <div class="progress-circle over50 p54">
+ <span><%=pollData.poll.Result_2%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+</center>
+
+
       </div>
     </div>
   </div>
