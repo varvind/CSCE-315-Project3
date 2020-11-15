@@ -4,7 +4,7 @@ if(process.env.NODE_ENV !== 'production') {
 
 const express = require('express')
 const app = new express()
-
+const expressSession = require('express-session')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -14,7 +14,11 @@ const expressLayouts = require('express-ejs-layouts')
 app.use(bodyParser.json())
 app.use(expressLayouts)
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(expressSession({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}))
 app.use(methodOverride('_method'))
 
 app.use(express.static(__dirname))
@@ -53,3 +57,6 @@ app.get('/find_polling_location', pollingLocationController)
 
 const searchController = require('./controllers/Search')
 app.get('/search', searchController)
+
+const sizeController = require('./controllers/updateSize')
+app.get('/updateSize/:font_size/:height/:page', sizeController)

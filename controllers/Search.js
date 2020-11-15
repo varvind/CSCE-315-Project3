@@ -1,7 +1,7 @@
 const e = require('express')
 const needle = require('needle')
 const tweetGrabber = require('./getRecentTweets')
-const production = "https://csce-project3-production.herokuapp.com/"
+const production = "https://csce-project3-production.herokuapp.com"
 const dev = "http://localhost:3000"
 const nameToUserNameMap = { 'Donald Trump': {twitterUName: 'realDonaldTrump', party: 'Republican', name : 'Donald Trump', imagePath: './img/trump.jpg'}, 
                             'Joe Biden': {twitterUName: 'JoeBiden', party : 'Democrat', name : 'Joe Biden', imagePath: './img/Joe_Biden.jpg'},
@@ -91,13 +91,27 @@ module.exports = (req, res) => {
     }
   }
   Promise.all(promises).then((result) => {
+    var font_size = 0;
+    var height = 0
+    if(req.session.font_size == undefined) {
+      font_size = 100;
+    } else {
+      font_size = req.session.font_size
+    }
+    if(req.session.height == undefined) {
+      height = 400;
+    } else {
+      height = req.session.height
+    }
     setTimeout(() => {
       res.render('searchPoliticians', {
         layout: 'layouts/navbar',
         tweets: tweets,
         names,
         fivethirtyeightpolls : fivethirtyeightpolls,
-        nytimes: nytimes
+        nytimes: nytimes,
+        font_size: font_size,
+        height:height
       })
     }, 6000)
     

@@ -14,16 +14,23 @@
         height: 600px;
       }
       body {
-        font-size: 100%;
+        font-size: <%=font_size%>%;
       }
       .card {
-        height: 400px;
+        height: <%=height%>px;
         width:100%
       }
     </style>
   <title>Election Tracker</title>
 </head>
 <body>
+  <center>
+    <p style = "margin-top:2%; font-size:130%; font-weight: 450; text-decoration: underline;">Change Font Size</p>
+    <p id = "size"><%= font_size  %>%</p>
+    <input type = "range" min = "70" max = "130" value = <%=font_size%> id = "myRange" style = "width:300px">
+    <br>
+    <button class="btn btn-outline-secondary" onclick="setDefault()">Default</button>
+  </center>
   <p style = "text-align: center; margin-top:3%; font-size: 180%; text-emphasis: bold;">Presidential Election 2020</p>
   <p style = "text-align: center; margin-top:2%; font-size: 140%; text-emphasis: bold;">Donald Trump vs. Joe Biden<p>
   <div class="container">
@@ -124,20 +131,67 @@
   <br>
   <br>
   <br>
-  <input type = "range" min = "80" max = "120" value = "100" id = "myRange">
+  
   <br>
   <br>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
+    function setDefault() {
+      var val = 100
+      document.getElementById("myRange").value = val
+      document.getElementById("size").innerHTML = `${val}%`
+      var height = 400
+      var sheet = document.styleSheets[6]
+      var rules = sheet.cssRules || sheet.rules
+      rules[1].style.fontSize = `${val}%`
+      rules[2].style.height = `${height}px`
+      rules[2].style.width = `${val}%`
+
+      const url = `/updateSize/${val}/${height}/index`
+      $.ajax({
+          global:false,
+          type:'GET',
+          url: url,
+          dataType:'html',
+          data: {},
+          success : function (result) {
+              console.log(result);
+          },
+          error: function (request, status, error) {
+              console.log(error)
+              Response.redirect('/')
+          }
+      })
+    }
     document.getElementById("myRange").addEventListener("change", () => {
       var val = document.getElementById("myRange").value
+      document.getElementById("size").innerHTML = `${val}%`
       var height = 350 * (1 + (val - 100)/100) + 80
       var sheet = document.styleSheets[6]
       var rules = sheet.cssRules || sheet.rules
       rules[1].style.fontSize = `${val}%`
       rules[2].style.height = `${height}px`
       rules[2].style.width = `${val}%`
+
+      const url = `/updateSize/${val}/${height}/index`
+      $.ajax({
+          global:false,
+          type:'GET',
+          url: url,
+          dataType:'html',
+          data: {},
+          success : function (result) {
+              console.log(result);
+          },
+          error: function (request, status, error) {
+              console.log(error)
+              Response.redirect('/')
+          }
+      })
     })
   </script>
+  
+
   <!--The div element for the map -->
 </body>
 </html>
