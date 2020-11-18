@@ -24,7 +24,6 @@ async function getRequest(name) {
     const res = await needle('get', endpointUrl, params, { headers: {
         "authorization": `Bearer ${token}`
     }})
-    console.log(res.body)
     if(res.body) {
         return res.body;
     } else {
