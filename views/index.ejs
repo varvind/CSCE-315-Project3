@@ -9,24 +9,30 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <style type="text/css">
-      /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;
-        /* The height is 400 pixels */
-        width: 100%;
-        /* The width is the width of the web page */
-      }
       .vl {
         border-left: 1px solid grey;
         height: 600px;
       }
-
+      body {
+        font-size: <%=font_size%>%;
+      }
+      .card {
+        height: <%=height%>px;
+        width:100%
+      }
     </style>
   <title>Election Tracker</title>
 </head>
 <body>
-  <h3 style = "text-align: center; margin-top:3%">Presidential Election 2020</h3>
-  <h5 style = "text-align: center; margin-top:3%">Donald Trump vs. Joe Biden</h5>
+  <center>
+    <p style = "margin-top:2%; font-size:130%; font-weight: 450; text-decoration: underline;">Change Font Size</p>
+    <p id = "size"><%= font_size  %>%</p>
+    <input type = "range" min = "70" max = "130" value = <%=font_size%> id = "myRange" style = "width:300px">
+    <br>
+    <button class="btn btn-outline-secondary" onclick="setDefault()">Default</button>
+  </center>
+  <p style = "text-align: center; margin-top:3%; font-size: 180%; text-emphasis: bold;">Presidential Election 2020</p>
+  <p style = "text-align: center; margin-top:2%; font-size: 140%; text-emphasis: bold;">Donald Trump vs. Joe Biden<p>
   <div class="container">
     <div class="row" style = "margin-top: 2%">
       <div class="col">
@@ -40,19 +46,19 @@
               <% while (j < trumpTweets.length) {%>
                 <%if (j==0) {%>
                   <div class="carousel-item active " id = "trump<%=j%> ">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;" id = "trump<%=j%>">
                       <div class="card-body">
-                        <h5 class="card-title">Donald Trump</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-title" style = "font-size:120%; font-weight: 500;">Donald Trump</p>
+                        <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></p>
                         <p class="card-text"><%=trumpTweets[j].text%> </p>
                       </div>
                     </div>
                 <% }  else {%>  
                 <div class="carousel-item" id = "trump<%=j%> ">
-                  <div class="card" style="width: 18rem;">
+                  <div class="card" style="width: 18rem;" id = "trump<%=j%>">
                     <div class="card-body">
-                      <h5 class="card-title">Donald Trump</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-title" style = "font-size:120%; font-weight: 500;">Donald Trump</p>
+                      <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@RealDonaldTrump  <img src = "../img/twitter.png" style = "width:20px"></p>
                       <p class="card-text"><%=trumpTweets[j].text%> </p>
                     </div>
                   </div>
@@ -62,11 +68,11 @@
               <% } %>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="carousel-control-prev-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="carousel-control-next-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Next</span>
             </a>
           </div>
@@ -86,20 +92,20 @@
               <% var j = 0 %>
               <% while (j < bidenTweets.length) {%>
                 <%if (j==0) {%>
-                  <div class="carousel-item active " id = "trump<%=j%> ">
-                    <div class="card" style="width: 18rem;">
+                  <div class="carousel-item active " id = "trump<%=j%>">
+                    <div class="card" style="width: 18rem;" id = "biden<%=j%>">
                       <div class="card-body">
-                        <h5 class="card-title">Donald Trump</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                        <p class="card-title" style = "font-size:120%; font-weight: 500;">Joe Biden</p>
+                        <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@Joe Biden  <img src = "../img/twitter.png" style = "width:20px"></p>
                         <p class="card-text"><%=bidenTweets[j].text%> </p>
                       </div>
                     </div>
                 <% }  else {%>  
                 <div class="carousel-item" id = "trump<%=j%> ">
-                  <div class="card" style="width: 18rem;">
+                  <div class="card" style="width: 18rem" id = "biden<%=j%>">
                     <div class="card-body">
-                      <h5 class="card-title">Joe Biden</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">@JoeBiden  <img src = "../img/twitter.png" style = "width:20px"></h6>
+                      <p class="card-title" style = "font-size:120%; font-weight: 500;">Joe Biden</p>
+                      <p class="card-subtitle mb-2 text-muted" style = "font-size:100%; font-weight: 500;">@Joe Biden  <img src = "../img/twitter.png" style = "width:20px"></p>
                       <p class="card-text"><%=bidenTweets[j].text%> </p>
                     </div>
                   </div>
@@ -109,11 +115,11 @@
               <% } %>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="carousel-control-prev-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next" >
+              <span class="carousel-control-next-icon" aria-hidden="true" style = "background-color: lightgrey;"></span>
               <span class="sr-only">Next</span>
             </a>
           </div>
@@ -125,39 +131,82 @@
   <br>
   <br>
   <br>
-  <br>
-  <br>
   
+  <br>
+  <br>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-  if(localStorage.getItem("firstTime")==null){
-   setTimeout(() => { alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page"); }, 2000);
-   localStorage.setItem("firstTime","done");
-}
+    if(localStorage.getItem("firstTime")==null){
+      setTimeout(() => { alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page"); }, 2000);
+      localStorage.setItem("firstTime","done");
+    }
   //setTimeout(() => { alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page"); }, 2000);
   //alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page");
   
-  document.onkeydown = function(e) {
-    if (e.which == 49) {
-	  //alert("Go to Home Page");
-	  var newUrl = "/";
-      window.location.replace(newUrl);
-	  document.location.href = newUrl;
-    } else if (e.which == 50){
-	  //alert("Go to Search Page");
-	  var newUrl = "/politician_search";
-      window.location.replace(newUrl);
-	  document.location.href = newUrl;
-	} else if (e.which == 51){
-	  //alert("Go to Map Page");
-	  var newUrl = "/find_polling_location";
-      window.location.replace(newUrl);
-	  document.location.href = newUrl;
-	  
-	}
-  };
+    document.onkeydown = function(e) {
+        if (e.which == 49) {
+          var newUrl = "/";
+          window.location.replace(newUrl);
+          document.location.href = newUrl;
+        } else if (e.which == 50){
+          var newUrl = "/politician_search";
+          window.location.replace(newUrl);
+          document.location.href = newUrl;
+        } 
+    };
+    function setDefault() {
+      var val = 100
+      document.getElementById("myRange").value = val
+      document.getElementById("size").innerHTML = `${val}%`
+      var height = 400
+      var sheet = document.styleSheets[6]
+      var rules = sheet.cssRules || sheet.rules
+      rules[1].style.fontSize = `${val}%`
+      rules[2].style.height = `${height}px`
+      rules[2].style.width = `${val}%`
+
+      const url = `/updateSize/${val}/${height}/index`
+      $.ajax({
+          global:false,
+          type:'GET',
+          url: url,
+          dataType:'html',
+          data: {},
+          success : function (result) {
+              console.log(result);
+          },
+          error: function (request, status, error) {
+              console.log(error)
+              Response.redirect('/')
+          }
+      })
+    }
+    document.getElementById("myRange").addEventListener("change", () => {
+      var val = document.getElementById("myRange").value
+      document.getElementById("size").innerHTML = `${val}%`
+      var height = 350 * (1 + (val - 100)/100) + 80
+      var sheet = document.styleSheets[6]
+      var rules = sheet.cssRules || sheet.rules
+      rules[1].style.fontSize = `${val}%`
+      rules[2].style.height = `${height}px`
+      rules[2].style.width = `${val}%`
+
+      const url = `/updateSize/${val}/${height}/index`
+      $.ajax({
+          global:false,
+          type:'GET',
+          url: url,
+          dataType:'html',
+          data: {},
+          success : function (result) {
+              console.log(result);
+          },
+          error: function (request, status, error) {
+              console.log(error)
+              Response.redirect('/')
+          }
+      })
+    })
   </script>
-  
-  
-  <!--The div element for the map -->
 </body>
 </html>

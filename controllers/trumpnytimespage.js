@@ -23,7 +23,12 @@ var jsonArr = [];
 
 var x = nyt.article.search({'query':req.params.q}, function(response){
 const json = JSON.parse(response);
-var final = json["response"]["docs"]
+var final = []
+if(json["response"] != undefined) {
+  final = json["response"]["docs"]
+} else if (json.response != undefined) {
+  final =json.response.docs
+}
 for (var key in final) {
   if (final.hasOwnProperty(key)) {
     
