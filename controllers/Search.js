@@ -12,7 +12,19 @@ const nameToUserNameMap = { 'Donald Trump': {twitterUName: 'realDonaldTrump', pa
                             'Bernie Sanders' : {twitterUName: 'BernieSanders', party : 'Democrat', name : 'Bernie Sanders', imagePath: './img/bernie_sanders.jpg'},
                             'Ted Cruz' : {twitterUName: 'tedcruz', party : 'Republican', name : 'Ted Cruz', imagePath: './img/nancy_pelosi.jpg'},
                             'Andrew Cuomo' : {twitterUName: 'NYGovCuomo', party : 'Democrat', name : 'Andrew Cuomo', imagePath: './img/nancy_pelosi.jpg'},
-                            'Lindsey Graham' : {twitterUName: 'LindseyGrahamSC', party : 'Republican', name : 'Lindsey Graham', imagePath: './img/nancy_pelosi.jpg'}}
+                            'Lindsey Graham' : {twitterUName: 'LindseyGrahamSC', party : 'Republican', name : 'Lindsey Graham', imagePath: './img/nancy_pelosi.jpg'},
+                            'Jo Jorgenson' : {twitterUName: 'Jorgensen4POTUS', party : 'Libertarian', name : 'Jo Jorgenson', imagePath: './img/nancy_pelosi.jpg'},
+                            'Spike Cohen' : {twitterUName: 'RealSpikeCohen', party : 'Libertarian', name : 'Spike Cohen', imagePath: './img/nancy_pelosi.jpg'},
+                            'Howie Hawkins' : {twitterUName: 'HowieHawkins', party : 'Green', name : 'Howie Hawkins', imagePath: './img/nancy_pelosi.jpg'},
+                            'Angela Walker' : {twitterUName: 'AngelaNWalker', party : 'Green', name : 'Angela Walker', imagePath: './img/nancy_pelosi.jpg'},
+                            'Gloria Estela La Riva' : {twitterUName: 'GloriaLaRiva', party : 'Party For Socialism And Liberation', name : 'Gloria Estela La Riva', imagePath: './img/nancy_pelosi.jpg'},
+                            'Sunil Freeman' : {twitterUName: 'SunilKFree', party : 'Party For Socialism And Liberation', name : 'Sunil Freeman', imagePath: './img/nancy_pelosi.jpg'},
+                            'Rocky De La Fuente Guerra' : {twitterUName: 'JoinRocky', party : 'Allience', name : 'Rocky De La Fuente Guerra', imagePath: './img/nancy_pelosi.jpg'},
+                            'Darcy Richardson' : {twitterUName: 'DarcyRichardson', party : 'Allience', name : 'Darcy Richardson', imagePath: './img/nancy_pelosi.jpg'},
+                            'Don Blankenship' : {twitterUName: 'DonBlankenship', party : 'Constitution', name : 'Don Blankenship', imagePath: './img/nancy_pelosi.jpg'},
+                            'Brock Pierce' : {twitterUName: 'brockpierce', party : 'Independent', name : 'Brock Pierce', imagePath: './img/nancy_pelosi.jpg'},
+                            'Karla Ballard' : {twitterUName: 'KarlaMBallard', party : 'Independent', name : 'Karla Ballard', imagePath: './img/nancy_pelosi.jpg'},
+                            'Jade Simmons' : {twitterUName: 'jadesimmons', party : 'Independent', name : 'Jade Simmons', imagePath: './img/nancy_pelosi.jpg'}}
 module.exports = (req, res) => {
   const url = (process.env.NODE_ENV ? production : dev)
   const query = req.query.search
@@ -34,10 +46,22 @@ module.exports = (req, res) => {
   }
 
   if(party != "All") {
-    if(party == 'Republicans') {
+    if(party == 'Republican') {
       politicians = politicians.filter(obj => obj.party == 'Republican')
-    } else {
+    } else if (party == 'Democrat') {
       politicians = politicians.filter(obj => obj.party == 'Democrat')
+    } else if (party == 'Libertarian') {
+      politicians = politicians.filter(obj => obj.party == 'Libertarian')
+    } else if (party == 'Green') {
+      politicians = politicians.filter(obj => obj.party == 'Green')
+    } else if (party == 'Party For Socialism And Liberation') {
+      politicians = politicians.filter(obj => obj.party == 'Party For Socialism And Liberation')
+    } else if (party == 'Allience') {
+      politicians = politicians.filter(obj => obj.party == 'Allience')
+    } else if (party == 'Constitution') {
+      politicians = politicians.filter(obj => obj.party == 'Constitution')
+    } else {
+      politicians = politicians.filter(obj => obj.party == 'Independent')
     }
   }
   
@@ -45,12 +69,20 @@ module.exports = (req, res) => {
   var promises = []
   if(source == "Twitter" || source == "All") {
     for(var i =0 ; i< politicians.length; i++) {
-      names.push(politicians[i].name)
+      
       var promise = new Promise((res, rej, index = i) => {
         tweetGrabber.getTweets(politicians[i].twitterUName).then((response) => {
-          response.data.forEach((tweet) => {
-            tweets.push({name : politicians[index].name, uName : politicians[index].twitterUName, tweet: tweet, party : politicians[index].party, img: politicians[index].imagePath })
-          })
+          if(nytimes.length == 0) {
+            names.push(politicians[index].name)
+          }
+          if(response.data != undefined) {
+            response.data.forEach((tweet) => {
+              tweets.push({name : politicians[index].name, uName : politicians[index].twitterUName, tweet: tweet, party : politicians[index].party, img: politicians[index].imagePath })
+            })
+          } else {
+            tweets.push({name : politicians[index].name, uName : politicians[index].twitterUName, tweet: {text: `No recent tweets from ${politicians[index].name}` }, party : politicians[index].party, img: politicians[index].imagePath })
+          }
+          
           res()
         })
         
@@ -58,7 +90,7 @@ module.exports = (req, res) => {
       promises.push(promise)
     }
   } 
-  if (source == "Five Thirty Eight" || source == "All") {
+  if ((source == "Five Thirty Eight" || source == "All") && (party == 'Republican' || party == 'Democrat')) {
 
     var prom1 = new Promise((res, rej) => {
       needle('get', `${url}/polls`).then((response) => {
@@ -73,17 +105,20 @@ module.exports = (req, res) => {
     
   }
   if(source == "New York Times" || source == "All") {
-    for(var i=0; i < politicians.length; i++) {
-
+    for(var i=0; i < politicians.length; i++) {    
       var prom1 = new Promise((res, rej, index = i) => {
-        needle('get', `${url}/nyt/${politicians[index].name}`).then((response) => {
+        needle('get', `${url}/nyt/${politicians[index].name} 2020`).then((response) => {
           if(tweets.length == 0) {
             names.push(politicians[index].name)
           }
           const data = response.body
-          data.forEach(article => {
-            nytimes.push({ name: politicians[index].name, abstract: article.abstract, url: article.web_url })
-          })
+          if(data.length > 0) {
+            data.forEach(article => {
+              nytimes.push({ name: politicians[index].name, abstract: article.abstract, url: article.web_url })
+            })
+          } else {
+            nytimes.push({ name: politicians[index].name, abstract: `No articles for ${politicians[index].name}`, url: '' })
+          }
           res()   
         }) 
       })
