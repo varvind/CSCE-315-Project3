@@ -188,6 +188,17 @@
     <br>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+      document.onkeydown = function(e) {
+        if (e.which == 49) {
+          var newUrl = "/";
+          window.location.replace(newUrl);
+          document.location.href = newUrl;
+        } else if (e.which == 50){
+          var newUrl = "/politician_search";
+          window.location.replace(newUrl);
+          document.location.href = newUrl;
+        } 
+      };
       function setDefault() {
         var val = 100
         document.getElementById("myRange").value = val

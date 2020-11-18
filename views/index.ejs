@@ -136,6 +136,24 @@
   <br>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
+    if(localStorage.getItem("firstTime")==null){
+      setTimeout(() => { alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page"); }, 2000);
+      localStorage.setItem("firstTime","done");
+    }
+  //setTimeout(() => { alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page"); }, 2000);
+  //alert("To use built in navigation by keystrokes press the keys in parentheses next to the area you are trying to go to. For example press 2 to go to the Search Page");
+  
+    document.onkeydown = function(e) {
+        if (e.which == 49) {
+          var newUrl = "/";
+          window.location.replace(newUrl);
+          document.location.href = newUrl;
+        } else if (e.which == 50){
+          var newUrl = "/politician_search";
+          window.location.replace(newUrl);
+          document.location.href = newUrl;
+        } 
+    };
     function setDefault() {
       var val = 100
       document.getElementById("myRange").value = val
@@ -190,8 +208,5 @@
       })
     })
   </script>
-  
-
-  <!--The div element for the map -->
 </body>
 </html>
