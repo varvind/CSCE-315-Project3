@@ -204,7 +204,7 @@
         document.getElementById("myRange").value = val
         document.getElementById("size").innerHTML = `${val}%`
         var height = 400
-        var sheet = document.styleSheets[5]
+        var sheet = document.styleSheets[document.styleSheets.length -1 ]
         var rules = sheet.cssRules || sheet.rules
         rules[0].style.fontSize = `${val}%`
         rules[1].style.height = `${height}px`
@@ -230,7 +230,7 @@
         var val = document.getElementById("myRange").value
         document.getElementById("size").innerHTML = `${val}%`
         var height = 350 * (1 + (val - 100)/100) + 80
-        var sheet = document.styleSheets[5]
+        var sheet = document.styleSheets[document.styleSheets.length -1 ]
         var rules = sheet.cssRules || sheet.rules
         rules[0].style.fontSize = `${val}%`
         rules[1].style.height = `${height}px`
