@@ -14,7 +14,7 @@
         height: 600px;
       }
       body {
-        font-size: <%=font_size%>%;
+        font-size: <%=fontSize%>%;
       }
       .card {
         height: <%=height%>px;
@@ -26,8 +26,8 @@
 <body>
   <center>
     <p style = "margin-top:2%; font-size:130%; font-weight: 450; text-decoration: underline;">Change Font Size</p>
-    <p id = "size"><%= font_size  %>%</p>
-    <input type = "range" min = "70" max = "130" value = <%=font_size%> id = "myRange" style = "width:300px">
+    <p id = "size"><%= fontSize  %>%</p>
+    <input type = "range" min = "70" max = "130" value = <%=fontSize%> id = "myRange" style = "width:300px">
     <br>
     <button class="btn btn-outline-secondary" onclick="setDefault()">Default</button>
   </center>

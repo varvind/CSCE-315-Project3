@@ -1,65 +1,62 @@
 const tweetGrabber = require('./getRecentTweets')
 const needle = require('needle')
-const e = require('express')
-const production = "https://csce-project3-production.herokuapp.com"
-const dev = "http://localhost:3000"
+const production = 'https://csce-project3-production.herokuapp.com'
+const dev = 'http://localhost:3000'
 module.exports = (req, res) => {
   const url = (process.env.NODE_ENV ? production : dev)
-  var trumpTweets = []
-  var bidenTweets = []
-  var tweetPromises = []
-  var pollData = []
-  var prom0 = new Promise((res, rej) => {
-    const tweets = tweetGrabber.getTweets("realDonaldTrump").then((response) => {
+  const trumpTweets = []
+  const bidenTweets = []
+  const tweetPromises = []
+  const pollData = []
+  const prom0 = new Promise((resolve, reject) => {
+    tweetGrabber.getTweets('realDonaldTrump').then((response) => {
       response.data.forEach(tweet => {
         trumpTweets.push(tweet)
       })
-      res()
+      resolve()
     })
   })
-  var prom = new Promise((res, rej) => {
-    const tweets = tweetGrabber.getTweets("JoeBiden").then((response) => {
+  const prom = new Promise((resolve, reject) => {
+    tweetGrabber.getTweets('JoeBiden').then((response) => {
       response.data.forEach(tweet => {
         bidenTweets.push(tweet)
       })
-      res()
+      resolve()
     })
   })
   tweetPromises.push(prom0, prom)
-  
+
   Promise.all(tweetPromises).then(async (result) => {
-      const prom1 = new Promise(async (res, rej) => {
-        needle('get',`${url}/polls`).then((response) => {
-          const data = response.body
-          for(var i = 1; i < 6 ; i++) {
-            pollData.push(data[i])
-          }
-          
-        })
-        res()        
+    const prom1 = new Promise((resolve, reject) => {
+      needle('get', `${url}/polls`).then((response) => {
+        const data = response.body
+        for (let i = 1; i < 6; i++) {
+          pollData.push(data[i])
+        }
       })
-      prom1.then((result)=> {
-        var font_size = 0;
-        var height = 0
-        if(req.session.font_size == undefined) {
-          font_size = 100;
-        } else {
-          font_size = req.session.font_size
-        }
-        if(req.session.height == undefined) {
-          height = 400;
-        } else {
-          height = req.session.height
-        }
-        res.render('index', {
-          layout: 'layouts/navbar',
-          bidenTweets: bidenTweets,
-          trumpTweets: trumpTweets,
-          pollData: pollData,
-          font_size: font_size,
-          height:height
-        })
-      })  
-      
+      resolve()
+    })
+    prom1.then((result) => {
+      let fontSize = 0
+      let height = 0
+      if (req.session.font_size === undefined) {
+        fontSize = 100
+      } else {
+        fontSize = req.session.font_size
+      }
+      if (req.session.height === undefined) {
+        height = 400
+      } else {
+        height = req.session.height
+      }
+      res.render('index', {
+        layout: 'layouts/navbar',
+        bidenTweets: bidenTweets,
+        trumpTweets: trumpTweets,
+        pollData: pollData,
+        fontSize: fontSize,
+        height: height
+      })
+    })
   })
 }

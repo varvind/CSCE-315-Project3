@@ -1,51 +1,48 @@
-require('dotenv').config({path: __dirname + '/../.env'});
-const { response } = require('express');
-const needle = require('needle');
+const path = require('path')
+require('dotenv').config({ path: path.join('/../.env') })
+const needle = require('needle')
 // The code below sets the bearer token from your environment variables
-// To set environment variables on Mac OS X, run the export command below from the terminal: 
-// export BEARER_TOKEN='YOUR-TOKEN' 
-const key = process.env.GOOGLE_KEY; 
+// To set environment variables on Mac OS X, run the export command below from the terminal:
+// export BEARER_TOKEN='YOUR-TOKEN'
+const key = process.env.GOOGLE_KEY
 const endpoint = 'https://www.googleapis.com/civicinfo/v2/voterinfo'
-var endpointUrl = ''
+let endpointUrl = ''
 
+async function getRequest () {
+  endpointUrl = endpoint
+  // Edit query parameters below
+  const params = {
+    key: key,
+    address: '711 University Dr, College Station, TX 77840'
+  }
 
-async function getRequest() {
-    endpointUrl = endpoint
-    // Edit query parameters below
-    const params = {
-        'key': key,
-        'address': '711 University Dr, College Station, TX 77840'
-    } 
+  const res = await needle('get', endpointUrl, params, {
+    headers: {
+      authorization: ''
+    }
+  })
+  if (res.body) {
+    return res.body
+  } else {
+    throw new Error('Unsuccessful request')
+  }
+}
 
-    const res = await needle('get', endpointUrl, params, { headers: {
-        "authorization": ''
-    }})
-    if(res.body) {
-        return res.body;
+async function getPollingLocation () {
+  endpointUrl = ''
+  try {
+    // Make request
+    const response = await getRequest()
+    if (response.pollingLocations === undefined) {
+      return []
     } else {
-        throw new Error ('Unsuccessful request')
+      return response.pollingLocations
     }
+  } catch (e) {
+    console.log(e)
+    return []
+  }
 }
 
-async function getPollingLocation() {
-    endpointUrl = ''
-    try {
-        // Make request
-        const response = await getRequest();
-        if(response.pollingLocations == undefined) {
-          return new Array()
-        } else {
-          return response.pollingLocations
-        }
-        
-        
-    } catch(e) {
-        console.log(e);
-        return []
-        process.exit(-1);
-    }
-    process.exit();
-}
-
-getPollingLocation();
-module.exports.getPollingLocation = getPollingLocation;
+getPollingLocation()
+module.exports.getPollingLocation = getPollingLocation

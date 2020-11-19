@@ -1,13 +1,11 @@
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-const express = require('express')
-const app = new express()
+const Express = require('express')
+const app = new Express()
 const expressSession = require('express-session')
-const ejs = require('ejs')
 const bodyParser = require('body-parser')
-const path = require('path')
 const methodOverride = require('method-override')
 const expressLayouts = require('express-ejs-layouts')
 
@@ -21,7 +19,7 @@ app.use(expressSession({
 }))
 app.use(methodOverride('_method'))
 
-app.use(express.static(__dirname))
+app.use(Express.static(__dirname))
 app.set('view engine', 'ejs')
 
 const port = process.env.PORT || 3000
@@ -30,7 +28,6 @@ app.listen(port, () => {
 })
 
 const homePageController = require('./controllers/homePage')
-
 
 app.get('/', homePageController)
 
@@ -46,7 +43,7 @@ app.get('/senate/nj', njsenatecontroller)
 const txhousecontroller = require('./controllers/housePollPage')
 app.get('/house/tx', txhousecontroller)
 
-const trumpnytimes = require('./controllers/trumpnytimespage.js')
+const trumpnytimes = require('./controllers/nytimescontroller.js')
 app.get('/nyt/:q', trumpnytimes)
 
 const searchPoliticianController = require('./controllers/searchPoliticianController')

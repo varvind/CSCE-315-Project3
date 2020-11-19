@@ -1,26 +1,24 @@
 
-
-
 module.exports = (req, res) => {
-  var font_size = 0;
-  var height = 0
-  if(req.session.font_size == undefined) {
-    font_size = 100;
+  let fontSize = 0
+  let height = 0
+  if (req.session.fontSize === undefined) {
+    fontSize = 100
   } else {
-    font_size = req.session.font_size
+    fontSize = req.session.fontSize
   }
-  if(req.session.height == undefined) {
-    height = 400;
+  if (req.session.height === undefined) {
+    height = 400
   } else {
     height = req.session.height
   }
   res.render('searchPoliticians', {
     layout: 'layouts/navbar',
-    tweets : [],
-    names : [],
+    tweets: [],
+    names: [],
     fivethirtyeightpolls: [],
-    nytimes : [],
-    font_size: font_size,
-    height:height
+    nytimes: [],
+    fontSize: fontSize,
+    height: height
   })
 }
