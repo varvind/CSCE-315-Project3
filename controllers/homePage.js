@@ -7,6 +7,8 @@ module.exports = (req, res) => {
   const trumpTweets = []
   const bidenTweets = []
   const tweetPromises = []
+  const nytimesBiden = []
+  const nytimesTrump = []
   const pollData = []
   const prom0 = new Promise((resolve, reject) => {
     tweetGrabber.getTweets('realDonaldTrump').then((response) => {
@@ -25,6 +27,36 @@ module.exports = (req, res) => {
     })
   })
   tweetPromises.push(prom0, prom)
+
+  const prom1 = new Promise((resolve, reject) => {
+    needle('get', `${url}/nyt/Trump`).then((response) => {
+      const data = response.body
+      if (data.length > 0) {
+        data.forEach(article => {
+          nytimesTrump.push({ name: 'Doanld Trump', abstract: article.abstract, url: article.web_url })
+        })
+      } else {
+        nytimesTrump.push({ name: 'Donald Trump', abstract: 'No articles for Donald Trump', url: '' })
+      }
+      resolve()
+    })
+  })
+
+  const prom2 = new Promise((resolve, reject) => {
+    needle('get', `${url}/nyt/Biden`).then((response) => {
+      const data = response.body
+      if (data.length > 0) {
+        data.forEach(article => {
+          nytimesBiden.push({ name: 'Joe Biden', abstract: article.abstract, url: article.web_url })
+        })
+      } else {
+        nytimesBiden.push({ name: 'Joe Biden', abstract: 'No articles for Joe Biden', url: '' })
+      }
+      resolve()
+    })
+  })
+
+  tweetPromises.push(prom1, prom2)
 
   Promise.all(tweetPromises).then(async (result) => {
     const prom1 = new Promise((resolve, reject) => {
@@ -53,6 +85,8 @@ module.exports = (req, res) => {
         layout: 'layouts/navbar',
         bidenTweets: bidenTweets,
         trumpTweets: trumpTweets,
+        nytimesBiden: nytimesBiden,
+        nytimesTrump: nytimesTrump,
         pollData: pollData,
         fontSize: fontSize,
         height: height
