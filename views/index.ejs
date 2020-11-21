@@ -323,6 +323,27 @@
           <% }) %> 
         <% } %> 
 </div>
+<p>Arizona</p>
+<% if(bidenpollsaz.length != 0) { %>
+          <% bidenpollsaz.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
 
 <p>Pennsylvannia</p>
 <% if(bidenpollspa.length != 0) { %>

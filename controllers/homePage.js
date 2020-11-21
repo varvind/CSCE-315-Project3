@@ -109,7 +109,7 @@ var bidenpollsnv = []
 
   tweetPromises.push(prom4)
    var prom5 = new Promise((res, rej) => {
-      needle('get', `${url}/polls/states/biden`).then((response) => {
+      needle('get', `${url}/polls/states/trump`).then((response) => {
         const data = response.body
           for(var x = 0; x< 250; x++)
             
