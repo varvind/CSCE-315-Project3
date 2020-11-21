@@ -48,7 +48,7 @@ module.exports = (req, res) => {
        if(x[3]=="Joseph R. Biden Jr."){
        jsonArr.push({"state": x[1], "Candidate_1": x[3], "Date": x[2], "Result": x[11]});
      }
-       console.log({"state": x[1], "Candidate_1": x[3], "Date": x[2], "Result": x[11]});
+       //console.log({"state": x[1], "Candidate_1": x[3], "Date": x[2], "Result": x[11]});
        statecount+=1
     }
     

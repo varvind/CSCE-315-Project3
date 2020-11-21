@@ -76,13 +76,150 @@
 
          
         </center>
+<div style ="margin-left: -45%">
 <center>
  <p>Polls</p>
  <p>National</p>
   <% if(fivethirtyeightpolls.length != 0) { %>
           <% fivethirtyeightpolls.forEach(pollData => { %>
-             <div class="progress-circle over50 p46">
+          <% if(pollData.poll.Result_1 > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+             <% } %>
  <span><%=pollData.poll.Result_1%> </span>
+
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+
+<p>Georgia</p>
+<% if(trumppollsga.length != 0) { %>
+          <% trumppollsga.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+<p>Arizona</p>
+<% if(trumppollsaz.length != 0) { %>
+          <% trumppollsaz.forEach(pollData => { %>
+            <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+<p>Pennsylvannia</p>
+<% if(trumppollspa.length != 0) { %>
+          <% trumppollspa.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+<p>Michigan</p>
+<% if(trumppollsmi.length != 0) { %>
+          <% trumppollsmi.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+<p>Wisconsin</p>
+<% if(trumppollswi.length != 0) { %>
+          <% trumppollswi.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+<p>Nevada</p>
+<% if(trumppollsnv  .length != 0) { %>
+          <% trumppollsnv.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
   
    <div class="left-half-clipper">
       <div class="first50-bar"></div>
@@ -93,6 +230,8 @@
         <% } %> 
 </div>
 </center>
+</div>
+
       </div>
 
       <div class="vl">
@@ -141,11 +280,17 @@
           </div>
         </center>
 <center>
+  <div style ="margin-left: 45%">
 <p>Polls</p>
 <p>National</p>
   <% if(fivethirtyeightpolls.length != 0) { %>
           <% fivethirtyeightpolls.forEach(pollData => { %>
-             <div class="progress-circle over50 p54">
+             <% if(pollData.poll.Result_1 > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+             <% } %>
  <span><%=pollData.poll.Result_2%> </span>
   
    <div class="left-half-clipper">
@@ -156,8 +301,116 @@
           <% }) %> 
         <% } %> 
 </div>
-</center>
 
+<p>Georgia</p>
+<% if(bidenpollsga.length != 0) { %>
+          <% bidenpollsga.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+<p>Pennsylvannia</p>
+<% if(bidenpollspa.length != 0) { %>
+          <% bidenpollspa.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+<p>Michigan</p>
+<% if(bidenpollsmi.length != 0) { %>
+          <% bidenpollsmi.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+
+<p>Wisconsin</p>
+<% if(bidenpollswi.length != 0) { %>
+          <% bidenpollswi.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+<p>Nevada</p>
+<% if(bidenpollsnv  .length != 0) { %>
+          <% bidenpollsnv.forEach(pollData => { %>
+             <% if(pollData.poll.Result > 50) {%>
+
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <% } else {%>
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <% } %>
+
+              
+ <span><%=pollData.poll.Result%> </span>
+  
+   <div class="left-half-clipper">
+      <div class="first50-bar"></div>
+      <div class="value-bar"></div>
+   </div>
+              
+          <% }) %> 
+        <% } %> 
+</div>
+</center>
+</div>
 
       </div>
     </div>
