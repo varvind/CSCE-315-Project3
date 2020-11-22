@@ -322,14 +322,15 @@
         <% } %> 
 </div>
 
-<p>Georgia</p>
-<% if(bidenpollsga.length != 0) { %>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Georgia</p>
+<div style = "background-image: url(../img/georgia.png); background-size:80%; background-position: center ; height: 500px; background-repeat:no-repeat; margin-top:-40%">
+</div><% if(bidenpollsga.length != 0) { %>
           <% bidenpollsga.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:-100%; margin-bottom: 20%;">>
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>"style = "margin-top:-95%; margin-bottom: 20%;">
              <% } %>
 
               
@@ -343,14 +344,15 @@
           <% }) %> 
         <% } %> 
 </div>
-<p>Arizona</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Arizona</p>
+<div style = "background-image: url(../img/arizona.png); background-size:80%; background-position: center ; height: 500px; background-repeat:no-repeat; margin-top: -50%; margin-bottom: 50%">
 <% if(bidenpollsaz.length != 0) { %>
           <% bidenpollsaz.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>"style = "margin-top:70%; margin-bottom: 100%;">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>"style = "margin-top:200%; margin-bottom: 90%;">
              <% } %>
 
               
@@ -365,14 +367,16 @@
         <% } %> 
 </div>
 
-<p>Pennsylvannia</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500; margin-top: 100%">Pennsylvannia</p>
+<div style = "background-image: url(../img/pa.png); background-size:80%; background-position: center ; height: 500px; background-repeat:no-repeat; margin-top: -40%">
+
 <% if(bidenpollspa.length != 0) { %>
           <% bidenpollspa.forEach(pollData => { %>
             <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>"style = "margin-top:55%; margin-bottom: 40%;">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>"style = "margin-top:55%; margin-bottom: 50%;">
              <% } %>
               
  <span><%=pollData.poll.Result%> </span>
