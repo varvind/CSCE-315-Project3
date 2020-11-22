@@ -79,14 +79,16 @@
 <div style ="margin-left: -45%">
 <center>
  <p>Polls</p>
- <p>National</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">National</p>
+<div style = "background-image: url(../img/usa.png); background-size:30%; background-position: center ; height: 300px; background-repeat:no-repeat">
+</div>
   <% if(fivethirtyeightpolls.length != 0) { %>
           <% fivethirtyeightpolls.forEach(pollData => { %>
           <% if(pollData.poll.Result_1 > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result_1)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>" style = "margin-top:-25%; margin-bottom: 10%">
              <% } %>
  <span><%=pollData.poll.Result_1%> </span>
 
@@ -100,15 +102,18 @@
 </div>
 
 
-<p>Georgia</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Georgia</p>
+<div style = "background-image: url(../img/georgia.png); background-size:30%; background-position: center ; height: 300px; background-repeat:no-repeat">
+</div>
 <% if(trumppollsga.length != 0) { %>
           <% trumppollsga.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
-
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+            
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:-23%; margin-bottom: 10%">
              <% } %>
+           
 
               
  <span><%=pollData.poll.Result%> </span>
@@ -122,14 +127,17 @@
         <% } %> 
 </div>
 
-<p>Arizona</p>
+
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Arizona</p>
+<div style = "background-image: url(../img/arizona.png); background-size:30%; background-position: center ; height: 300px; background-repeat:no-repeat">
+</div>
 <% if(trumppollsaz.length != 0) { %>
           <% trumppollsaz.forEach(pollData => { %>
             <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:-25%; margin-bottom: 10%">
              <% } %>
 
               
@@ -144,14 +152,16 @@
         <% } %> 
 </div>
 
-<p>Pennsylvannia</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Pennsylvannia</p>
+<div style = "background-image: url(../img/pa.png); background-size:30%; background-position: center ; height: 300px; background-repeat:no-repeat">
+</div>
 <% if(trumppollspa.length != 0) { %>
           <% trumppollspa.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:-30%; margin-bottom: 10%">
              <% } %>
               
  <span><%=pollData.poll.Result%> </span>
@@ -165,14 +175,16 @@
         <% } %> 
 </div>
 
-<p>Michigan</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Michigan</p>
+<div style = "background-image: url(../img/mi.png); background-size:30%; background-position: center ; height: 300px; background-repeat:no-repeat">
+</div>
 <% if(trumppollsmi.length != 0) { %>
           <% trumppollsmi.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:-25%; margin-bottom: 10%">
              <% } %>
 
               
@@ -187,14 +199,16 @@
         <% } %> 
 </div>
 
-<p>Wisconsin</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Wisconsin</p>
+<div style = "background-image: url(../img/wi.png); background-size:30%; background-position: center ; height: 300px; background-repeat:no-repeat">
+</div>
 <% if(trumppollswi.length != 0) { %>
           <% trumppollswi.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+              <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:-25%; margin-bottom: 10%">
              <% } %>
 
               
@@ -208,14 +222,16 @@
           <% }) %> 
         <% } %> 
 </div>
-<p>Nevada</p>
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">Nevada</p>
+<div style = "background-image: url(../img/nv.png); background-size:30%; background-position: center ; height: 350px; background-repeat:no-repeat">
+</div>
 <% if(trumppollsnv  .length != 0) { %>
           <% trumppollsnv.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>" style = "margin-top:-30%; margin-bottom: 10%">
              <% } %>
 
               
@@ -282,14 +298,18 @@
 <center>
   <div style ="margin-left: 45%">
 <p>Polls</p>
-<p>National</p>
+
+
+<p style = "font-size : 120%; text-decoration: underline; font-weight: 500">National</p>
+<div style = "background-image: url(../img/usa.png); background-size:30%; background-position: center ; height: 500px; background-repeat:no-repeat">
+</div>
   <% if(fivethirtyeightpolls.length != 0) { %>
           <% fivethirtyeightpolls.forEach(pollData => { %>
              <% if(pollData.poll.Result_1 > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result_2)%>" style = "margin-top:4%">
               <% } else {%>
-               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_1)%>">
+               <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_2)%>" style = "margin-top:-25%; margin-bottom: 10%">
              <% } %>
  <span><%=pollData.poll.Result_2%> </span>
   
@@ -307,7 +327,7 @@
           <% bidenpollsga.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
               <% } else {%>
                <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
              <% } %>
@@ -328,7 +348,7 @@
           <% bidenpollsaz.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
               <% } else {%>
                <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
              <% } %>
@@ -348,9 +368,9 @@
 <p>Pennsylvannia</p>
 <% if(bidenpollspa.length != 0) { %>
           <% bidenpollspa.forEach(pollData => { %>
-             <% if(pollData.poll.Result > 50) {%>
+            <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
               <% } else {%>
                <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
              <% } %>
@@ -371,7 +391,7 @@
           <% bidenpollsmi.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
               <% } else {%>
                <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
              <% } %>
@@ -393,7 +413,7 @@
           <% bidenpollswi.forEach(pollData => { %>
              <% if(pollData.poll.Result > 50) {%>
 
-             <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result)%>">
               <% } else {%>
                <div class="progress-circle p<%=Math.ceil(pollData.poll.Result)%>">
              <% } %>
