@@ -19,7 +19,10 @@ app.use(expressSession({
 }))
 app.use(methodOverride('_method'))
 
-app.use(Express.static(__dirname))
+
+app.use(express.static(__dirname))
+app.use(express.static("public"));
+
 app.set('view engine', 'ejs')
 
 const port = process.env.PORT || 3000
@@ -32,8 +35,12 @@ const homePageController = require('./controllers/homePage')
 app.get('/', homePageController)
 
 const pollsPageController = require('./controllers/PollsPage')
-app.get('/polls', pollsPageController)
+app.get('/polls/national', pollsPageController)
 
+const bidenstatePollPage = require('./controllers/bidenstatePollPage')
+app.get('/polls/states/biden', bidenstatePollPage)
+const trumpstatePollPage = require('./controllers/trumpstatePollPage')
+app.get('/polls/states/trump', trumpstatePollPage)
 const texassenatecontroller = require('./controllers/texasPollPage')
 app.get('/senate/tx', texassenatecontroller)
 
