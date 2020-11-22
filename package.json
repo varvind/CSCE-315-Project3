@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "checkstyle": "standard"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,10 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.1",
     "got": "^11.7.0",
     "method-override": "^3.0.0",
     "needle": "^2.5.2",
-    "nodemon": "^2.0.5",
     "nyt": "^0.1.0",
     "oauth-1.0a": "^2.2.6",
     "papaparse": "^5.3.0",
@@ -33,5 +35,4 @@
     "request": "^2.88.2"
   },
   "devDependencies": {}
-
 }
