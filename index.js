@@ -20,8 +20,8 @@ app.use(expressSession({
 app.use(methodOverride('_method'))
 
 
-app.use(express.static(__dirname))
-app.use(express.static("public"));
+app.use(Express.static(__dirname))
+app.use(Express.static("public"));
 
 app.set('view engine', 'ejs')
 
