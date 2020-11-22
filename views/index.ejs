@@ -301,13 +301,13 @@
 
 
 <p style = "font-size : 120%; text-decoration: underline; font-weight: 500">National</p>
-<div style = "background-image: url(../img/usa.png); background-size:30%; background-position: center ; height: 500px; background-repeat:no-repeat">
+<div style = "background-image: url(../img/usa.png); background-size:80%; background-position: center ; height: 500px; background-repeat:no-repeat; margin-top:-30%">
 </div>
   <% if(fivethirtyeightpolls.length != 0) { %>
           <% fivethirtyeightpolls.forEach(pollData => { %>
-             <% if(pollData.poll.Result_1 > 50) {%>
+             <% if(pollData.poll.Result_2 > 50) {%>
 
-             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result_2)%>" style = "margin-top:4%">
+             <div class="progress-circle over50 p<%=Math.ceil(pollData.poll.Result_2)%>" style = "margin-top:-100%; margin-bottom: 20%;">
               <% } else {%>
                <div class="progress-circle p<%=Math.ceil(pollData.poll.Result_2)%>" style = "margin-top:-25%; margin-bottom: 10%">
              <% } %>
