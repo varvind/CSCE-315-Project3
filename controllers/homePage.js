@@ -2,7 +2,7 @@ const tweetGrabber = require('./getRecentTweets')
 const needle = require('needle')
 const e = require('express')
 const dev = "http://localhost:3000"
-const url = (process.env.NODE_ENV ? production : dev)
+const production = 'https://csce-project3-production.herokuapp.com'
 module.exports = (req, res) => {
   const url = (process.env.NODE_ENV ? production : dev)
   const trumpTweets = []
