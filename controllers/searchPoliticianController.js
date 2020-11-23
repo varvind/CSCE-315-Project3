@@ -2,10 +2,10 @@
 module.exports = (req, res) => {
   let fontSize = 0
   let height = 0
-  if (req.session.fontSize === undefined) {
+  if (req.session.font_size === undefined) {
     fontSize = 100
   } else {
-    fontSize = req.session.fontSize
+    fontSize = req.session.font_size
   }
   if (req.session.height === undefined) {
     height = 400
